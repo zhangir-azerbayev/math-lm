@@ -1,7 +1,7 @@
 # Proofpilev2
 
 ## The Stack
-The stack is processed in `./thestack.py`
+The stack is processed in `./process_source_code.py`
 **Problems with the stack**
 - Issue: Matlab is wrong. There are only 111 matlab files that match the regex `[a-df-zA-Z]`. Looks like most of the matlab files are just arrays saved as text. Very little of the actual code was captured. 
     - [x] Fix 1: Regex filter to delete arrays
@@ -19,10 +19,12 @@ The stack is processed in `./thestack.py`
     - [x] Fix: `maple_filte()` removes xml. 
 - Issue: Lots of auto-generated tex files in directories called `latex`.
     - [x] Fix: removed in `tex_filter_rexp()`
+- Issue: The Julia dataset contains JSON Lines files with extension `.jl` and  large files of auto-generated boilerplate (e.g. wrappers, dumps of large arrays...).
+    - [x] Fix: `julia_filter` reduces the dataset size from 175GB to 150GB.
+    - [x] Fix: `julia_filter_strict` further reduces it to 100GB by using an explicit whitelist of keywords that tests for direct relevance to scientific computing.
 
 **Languages the stack does ok**:
 - Lean is fine
-- Julia is fine (possibly want to remove files that meet jsonl spec)
 - Python is clean (maybe get rid of Chinese characters?)
 
 **Open questions**:
